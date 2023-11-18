@@ -1,0 +1,36 @@
+#include <iostream>
+#include <stdio.h>
+
+using namespace std;
+
+class Zwierze{
+	private:
+		string gatunek;
+		string imie;
+		int wiek;	
+		
+	public:
+		void dodaj_zwierze(){
+			cout<<"Podaj gatunek: ";
+			cin>>gatunek;
+			cout<<"Podaj imie: ";
+			cin>>imie;
+			cout<<"Podaj wiek: ";
+			cin>>wiek;
+		}
+		void daj_glos(){
+			if(gatunek=="kot") cout<<imie<<" "<<wiek<<" miau miau\n";
+			else if(gatunek == "pies") cout<<imie<<" "<<wiek<<" hau hau\n";
+			else cout<<gatunek<<" "<<imie<<" Czy to zyje?\n";
+		}
+};
+
+
+int main() {
+	Zwierze zwierze1, zwierze2;
+	zwierze1.dodaj_zwierze();
+	zwierze2.dodaj_zwierze();
+	zwierze1.daj_glos();
+	zwierze2.daj_glos();
+	return 0;
+}

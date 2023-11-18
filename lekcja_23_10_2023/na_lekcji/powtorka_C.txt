@@ -1,0 +1,68 @@
+#include <iostream>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+
+using namespace std;
+
+class Przedmiot{
+private:
+	double* oceny;
+	int nr_indeksu;
+	int liczba_ocen;
+	int limit_ocen;
+public:
+Przedmiot (int nr_indeksu, int limit_ocen): nr_indeksu(nr_indeksu), limit_ocen(limit_ocen){
+	oceny = (double*) calloc(limit_ocen, sizeof(double));
+}
+	double obliczSrednia(){
+		double suma=0;
+		for (int i=0; i<liczba_ocen; i++){
+			suma += oceny[i];
+		}
+		return suma / liczba_ocen;
+	}
+	bool zaliczenie(){
+		if (liczba_ocen > 3  &&  obliczSrednia() >= 3)
+			return true;
+		return false;
+	}
+	void dodajOcene(double ocena){
+		if (liczba_ocen < limit_ocen)
+			oceny[liczba_ocen++] = ocena;
+	}
+	void zmienOcene(double ocena, int id){
+		if (id >= liczba_ocen  ||  id < 0){
+			printf("Nie ma takiego indeksu.\n");
+			return;
+		}
+		if (ocena <= 1  &&  ocena >= 6){
+			printf("Nie ma takiej oceny.\n");
+			return;
+		}	
+		oceny[id] = ocena;
+	}
+	void pisz(){
+		printf("Student o indeksie %d\nOceny:\n", nr_indeksu);
+		for (int i=0; i<liczba_ocen; i++)
+			printf("\t%lf\n", oceny[i]);
+		printf("Średnia: %lf\n", obliczSrednia());
+		if (zaliczenie())
+			printf("Student dostanie zaliczenie.\n");
+		else
+			printf("Student nie dostanie zaliczenia.\n");
+	}
+};
+
+int main(){
+	Przedmiot programowanie(2, 5);
+	for (int i=0; i<5; i++){
+		double ocena;
+		printf("Podaj ocenę: "); scanf("%lf", &ocena);
+		programowanie.dodajOcene(ocena);
+	}
+	printf("\n");
+	programowanie.pisz();
+	
+	return 0;
+}

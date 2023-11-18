@@ -1,0 +1,54 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class samochod{
+	public:
+		string marka;
+		string model;
+		int rocznik;
+		float pojemnosc;
+		float przyspieszenie;
+		float spalanie;
+		
+		void dodajauto(){
+			cout <<"\nPodaj marke auta: ";
+			cin >> marka;
+			cout << "Podaj model auta: ";
+			cin >> model;
+			cout << "Podaj rocznik: ";
+			cin >> rocznik;
+			cout << "Podaj pojemnosc: ";
+			cin >> pojemnosc;
+			cout << "Podaj przyspieszenie: ";
+			cin >> przyspieszenie;
+			cout << "Podaj spalanie: ";
+			cin >> spalanie;	
+		}
+		
+		void pokazauto(){
+			cout << "\nmarka : "<<marka<<"\n";
+			cout << "model : "<<model<<"\n";
+			cout << "rocznik : "<<rocznik<<"\n";
+			cout << "pojemnosc : "<<pojemnosc<<"\n";
+			cout << "przyspieszenie : "<<przyspieszenie<<"\n";
+			cout << "spalanie : "<<spalanie<<"\n";
+		}
+};
+
+
+int main() {
+	samochod *s;
+	int ilosc;
+	cout <<"Podaj ilosc samochodow: ";
+	cin >> ilosc;
+	s = (samochod *)calloc(ilosc, sizeof(samochod));
+	for(int i = 0;i<ilosc;i++){
+		s[i].dodajauto();
+	}
+	for(int i = 0;i<ilosc;i++){
+		s[i].pokazauto();
+	}
+	return 0;
+}

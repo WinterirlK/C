@@ -1,0 +1,36 @@
+#include <iostream>
+#include <stdio.h>
+#include <vector>
+
+using namespace std;
+
+class Bateria{
+	private:
+		string rodzaj_ogniwa;
+		float pojemnosc;
+		float napiecie;	
+		float ilosc_cykli;	
+		
+	public:
+		void dodaj_baterie(){
+			cout<<"Podaj rodzaj paliwa: ";
+			cin>>rodzaj_ogniwa;
+			cout<<"Podaj pojemnosc: ";
+			cin>>pojemnosc;
+			cout<<"Podaj napiecie: ";
+			cin>>napiecie;
+			cout<<"ilosc_cykli";
+			cin>>ilosc_cykli;
+		}
+		void pokaz(){
+			cout<<"bateria "<<rodzaj_ogniwa<<pojemnosc<<napiecie<<ilosc_cykli;
+		}
+};
+
+
+int main() {
+	Bateria b;
+	b.	dodaj_baterie();
+	b.	pokaz();
+	return 0;
+}

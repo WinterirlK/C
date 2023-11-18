@@ -1,0 +1,27 @@
+#include <iostream>
+#include <stdio.h>
+
+using namespace std;
+
+class Konto_Bankowe{
+	private:
+		string numer_konta;
+		float saldo;
+	public:
+		//tworzenie konstruktora nazwa musi byc taka sama jak nazwa klasy
+		Konto_Bankowe(){
+			numer_konta = "124542452452";
+			saldo = 21.37;
+		}
+		void display(){
+			cout<<"Numer konta: "<<numer_konta<<"\n";
+			cout<<"Saldo konta: "<<saldo<<"\n";
+		}
+};
+
+int main() {
+	//tworzenie klasy i automatyczne użycie konstruktora
+	Konto_Bankowe obiekt;
+	obiekt.	display();
+	return 0;
+}

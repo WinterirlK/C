@@ -1,0 +1,85 @@
+#include <cstdio>
+#include <cstdlib>
+#include <iostream>
+
+using namespace std;
+
+class Zamowienie{
+	private:
+		int * towary;
+		double * ceny;
+		int max_Poz;
+		int ile_Poz;
+		int *towar_2;
+		double *cena_2;
+	public:
+		Zamowienie(int max_Poz) : max_Poz(max_Poz){
+			towary = (int *)calloc(max_Poz,sizeof(int));
+			ceny = (double *)calloc(max_Poz,sizeof(double));
+			towar_2 = towary;
+			cena_2 = ceny;
+			ile_Poz = 0;
+		}
+		void dodaj_pozycje(int id_towaru, double cena_towaru){
+			if(ile_Poz<max_Poz){
+				*(towary)=id_towaru;
+				*(ceny)=cena_towaru;
+				towary++;ceny++;
+				ile_Poz++;	
+			}
+			else{
+				printf("Już jest za dużo pozycji");
+			}
+		}
+		int najdrozszy_towar(){
+			int * temp = towar_2;
+			double *tmp = cena_2;
+			double temp_2;
+			double naj;
+			int id;
+			int id_2;
+			if(ile_Poz>0){
+					naj = *cena_2;
+				for(int i = 0;i<ile_Poz;i++){
+					temp_2 = *tmp;
+					id_2 = *temp;
+					if(temp_2>naj){
+						naj = temp_2;
+						id = id_2;
+					}
+					tmp++;temp++;
+				}
+				return id;
+			}
+			else return -1;
+			
+		}
+		double Koszt_calkowity(){
+			double *tmp = cena_2;
+			double suma = 0;
+			for(int i = 0; i<ile_Poz;i++,tmp++)suma += *tmp;
+			return suma;
+		}
+		void wyswietl(){
+			int * temp = towar_2;
+			double *tmp = cena_2;
+			for(int i = 0;i<ile_Poz;i++){
+				cout<<"id: "<<*temp<<" cena: "<<*tmp<<"\n";
+				temp++;tmp++;
+			}
+			cout<<"suma = "<<Koszt_calkowity();
+		}
+};
+
+
+int main() {
+	Zamowienie zakupy(6);
+	zakupy.dodaj_pozycje(12,3);
+	zakupy.dodaj_pozycje(2,23);
+	zakupy.dodaj_pozycje(3,12);
+	zakupy.dodaj_pozycje(87,2.5);
+	zakupy.dodaj_pozycje(7,8.99);
+	cout<<"Najdrozszy: "<<zakupy.najdrozszy_towar()<<"\n";
+	zakupy.wyswietl();
+	return 0;
+}

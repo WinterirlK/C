@@ -1,0 +1,75 @@
+#include <iostream>
+#include <stdio.h>
+#define pi 3.14
+using namespace std;
+
+class prostopadloscian{
+	private:
+		float a,b,c;
+		float V,PP,Obw;
+	public:
+		//tworzenie konstruktora z parametrem nazwa musi byc taka sama jak nazwa klasy
+		prostopadloscian(float z, float x, float y) : a(z), b(x), c(y) {}
+		void oblicz_V(){
+			V = a*b*c;
+			printf("Prostopadloscian o wymiarach %.2f x %.2f x %.2f objetosc %.2f\n",a,b,c,V);
+		}
+		void oblicz_PP(){
+			PP = 2*a*b + 2*b*c + 2*c*a;
+			printf("Prostopadloscian o wymiarach %.2f x %.2f x %.2f posiada pole %.2f\n",a,b,c,PP);
+		}
+		void oblicz_Obw(){
+			Obw = 4*a + 4*b + 4*c;
+			printf("Prostopadloscian o wymiarach %.2f x %.2f x %.2f posiada obwod %.2f\n",a,b,c,Obw);
+		}
+};
+
+class walec{
+	private:
+		float r,h;
+		float V,PP;
+	public:
+		walec(float pr, float wys) : r(pr), h(wys) {}
+		void oblicz_V(){
+			V = pi * r*r*h;
+			printf("walec o promieniu %.2f oraz wysokosci %.2f ma objetosc %.2f\n",r,h,V);
+		}
+		void oblicz_PP(){
+			PP = 2 * pi * r * h + 2 * pi * r*r;
+			printf("walec o promieniu %.2f oraz wysokosci %.2f ma pole powierczhni %.2f\n",r,h,PP);
+		}
+};
+
+class stozek{
+	private:
+		float r,h,l;
+		double V,PP;
+	public:
+		stozek(float pr, float wys, float c) : r(pr), h(wys), l(c){}
+		void oblicz_V(){
+				V = (1/3 * pi)* r * r * h;
+				printf("stozek o promieniu podstawy %.2f oraz wysokosci %.2f ma objetosc %.2ld\n",r,h,V);
+		}
+		void oblicz_PP(){
+			PP = pi * r* (r + l);
+			printf("stozek o promieniu podstawy %.2f oraz wysokosci %.2f ma pole powierczhni %.2f\n",r,h,PP);
+		}
+		
+};
+
+int main() {
+	//tworzenie klasy i u¿ycie konstruktora z parametrem
+	prostopadloscian p1(5,5,5);
+	p1.oblicz_V();
+	p1.oblicz_PP();
+	p1.oblicz_Obw();
+	
+	walec w1(3,4);
+	w1.oblicz_V();
+	w1.oblicz_PP();
+	
+	stozek s1(5,5,5);
+	s1.oblicz_V();
+	s1.oblicz_PP();
+	return 0;
+}

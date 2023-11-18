@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+
+void how_many_duplicates(float *tab, int size) {
+    float *tab_of_nums = NULL;
+    tab_of_nums = malloc(sizeof(float) * size);
+
+    int licznik_numerow = 0;
+
+    for (int i = 0; i < size; i++) {
+        int duplicate = 0;
+
+        //sprawdzanie czy liczba byla juz sprawdzana
+        for (int k = 0; k < licznik_numerow; k++) {
+            if (tab[i] == tab_of_nums[k]) {
+                duplicate = 1;
+                break;
+            }
+        }
+
+        //jezeli liczba byla juz sprawdzana, przejdz dalej
+        if (duplicate) {
+            continue;
+        }
+
+        //liczenie duplikatow
+        for (int j = 0; j < size; j++) {
+            if (tab[i] == tab[j]) {
+                duplicate++;
+            }
+        }
+        tab_of_nums[licznik_numerow] = tab[i];
+        licznik_numerow++;
+            printf("Liczba ktora sie powtarza: %.2f\n", tab[i]);
+            printf("Ile razy sie powtarza: %d\n", duplicate);
+    }
+
+    free(tab_of_nums);
+}
+
+void my_own_strcpy(char *from, char *to) {
+    while (*from != '\0') {
+        *to = *from;
+        to++, from++;
+    }
+    *to = '\0';
+}
+
+int main() {
+    float kasa[] = {500, 200, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.2, 0.1, 0.05, 0.02, 0.01};
+    float wprowadzone_pieniadze;
+    float reszta = 0;
+    float cena;
+    float *tab_reszty = NULL;
+    int i = 0;
+    int j = 0;
+
+    printf("Ile kosztuje towar?:\n");
+    scanf("%f", &cena);
+    printf("Ile pieniedzy dal klient?:\n");
+    scanf("%f", &wprowadzone_pieniadze);
+
+    tab_reszty = (float *)malloc(sizeof(float) * 30);
+
+    if (wprowadzone_pieniadze < cena) {
+        printf("Klient dal za malo pieniedzy! \n");
+        return 1;  // Zakończ program z błędem
+    }
+
+    reszta = wprowadzone_pieniadze - cena;
+    printf("Klientowi trzeba wydac: %.2f\n", reszta);
+
+    while (reszta > 0 && i < 14) {
+        if (kasa[i] <= reszta + 0.000001) {
+            reszta = reszta - kasa[i];
+            tab_reszty[j] = round(kasa[i] * 100) / 100;
+            j++;
+        } else {
+            i++;
+        }
+    }
+
+    for (int k = 0; k < j; k++) {
+        printf("%.2f \n", tab_reszty[k]);
+    }
+
+    how_many_duplicates(tab_reszty, j);
+    free(tab_reszty);
+
+    return 0;
+}

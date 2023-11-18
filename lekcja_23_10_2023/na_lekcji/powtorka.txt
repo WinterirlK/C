@@ -1,0 +1,58 @@
+#include <cstdio>
+#include <cstdlib>
+#include <iostream>
+using namespace std;
+
+class Przedmiot{
+	private:
+		double oceny[5];
+		int nr_indeksu;
+		int liczba_ocen;
+		int limit_ocen;
+	public:
+		Przedmiot(int nr_indeksu, int limit_ocen) : nr_indeksu(nr_indeksu), limit_ocen(limit_ocen){}
+		double obliczSrednia(){
+			double temp = 0;
+			for(int i = 0;i<liczba_ocen;i++){
+				temp += oceny[i];
+			}
+			temp /= liczba_ocen;
+			return temp;
+		}
+		bool zaliczenie(){
+			if(obliczSrednia()>3){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		void dodajOcene(){
+			liczba_ocen=0;
+			while(liczba_ocen<limit_ocen){
+				cout<<"Podaj "<<liczba_ocen+1<<" ocene: ";
+				cin>>oceny[liczba_ocen];
+				liczba_ocen++;
+			}
+		}
+		void zmienOcene(double ocena, int id){
+			oceny[id]=ocena;
+		}
+		void pisz(){
+			for(int i = 0;i<limit_ocen;i++){
+				cout<<oceny[i]<<"\t";
+			}
+			cout<<"\n";
+			cout<<"Liczba ocen: "<<liczba_ocen<<" numer indeksu: "<<nr_indeksu<<" limit ocen: "<<limit_ocen<<"\n";
+			cout<<"Srednia: "<<obliczSrednia();
+			cout<<"\nZaliczone: "<<zaliczenie();
+		}
+};
+
+int main() {
+	Przedmiot polski(1,5);
+	polski.dodajOcene();
+	polski.zmienOcene(5,2);
+	polski.pisz();		
+	return 0;
+}

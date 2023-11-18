@@ -1,0 +1,43 @@
+#include <iostream>
+#include <stdio.h>
+
+using namespace std;
+
+class kalk{
+	private:
+		char znak;
+		float a, b, w;
+	
+	public:
+		
+		void wprowadz_dane(){
+			cout<<"podaj a: ";
+			cin>>a;
+			cout<<"podaj b: ";
+			cin>>b;
+		}
+		
+		void wynik(){
+			cout<<"+ dodawanie - odejmowanie: ";
+			getchar();
+			znak = getchar();
+			if(znak == '+'){
+				w = a+b;
+				cout<<a<<" "<<znak<<" "<<b<<" = "<<w;
+			}
+			else if(znak == '-'){
+				w = a-b;
+				cout<<a<<" "<<znak<<" "<<b<<" = "<<w;
+			}
+			else{
+				cout<<"zły znak";
+			}
+		}
+};
+
+int main() {
+	kalk k;
+	k.wprowadz_dane();
+	k.wynik();
+	return 0;
+}
